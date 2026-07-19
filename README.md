@@ -1,4 +1,6 @@
-# obsidian-vault-mcp
+<p align="center">
+  <img src="./assets/header.svg" alt="obsidian-vault-mcp — an Obsidian MCP that survives iCloud eviction" width="100%">
+</p>
 
 An MCP server for Obsidian vaults that doesn't hang on iCloud.
 
