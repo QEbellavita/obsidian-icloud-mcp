@@ -43,12 +43,18 @@ instead of blocking.
 
 ## Install
 
+Clone it, then point your MCP client at `server.js`:
+
+```bash
+git clone https://github.com/QEbellavita/obsidian-vault-mcp
+```
+
 ```json
 {
   "mcpServers": {
     "obsidian": {
-      "command": "npx",
-      "args": ["-y", "obsidian-vault-mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/obsidian-vault-mcp/server.js"],
       "env": {
         "OBSIDIAN_VAULTS": "{\"Personal\":\"/Users/you/Documents/Notes\"}"
       }
@@ -56,6 +62,9 @@ instead of blocking.
   }
 }
 ```
+
+Not on npm. The name `obsidian-vault-mcp` on the npm registry is an unrelated project by
+another author — don't `npx` it expecting this server.
 
 `OBSIDIAN_VAULTS` is a JSON object of name → absolute path. Multiple vaults are fine:
 
