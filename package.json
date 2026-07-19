@@ -1,0 +1,35 @@
+{
+  "name": "obsidian-vault-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Obsidian vaults that survives iCloud \u2014 reads, searches and writes notes without hanging on evicted files",
+  "license": "MIT",
+  "main": "server.js",
+  "bin": {
+    "obsidian-vault-mcp": "server.js"
+  },
+  "files": [
+    "server.js",
+    "src/"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "obsidian",
+    "notes",
+    "icloud",
+    "markdown"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
