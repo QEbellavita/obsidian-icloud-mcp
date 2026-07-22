@@ -45,18 +45,14 @@ instead of blocking.
 
 ## Install
 
-Clone it, then point your MCP client at `server.js`:
-
-```bash
-git clone https://github.com/QEbellavita/obsidian-icloud-mcp
-```
+Point your MCP client at it:
 
 ```json
 {
   "mcpServers": {
     "obsidian": {
-      "command": "node",
-      "args": ["/absolute/path/to/obsidian-icloud-mcp/server.js"],
+      "command": "npx",
+      "args": ["-y", "obsidian-icloud-mcp"],
       "env": {
         "OBSIDIAN_VAULTS": "{\"Personal\":\"/Users/you/Documents/Notes\"}"
       }
@@ -65,9 +61,12 @@ git clone https://github.com/QEbellavita/obsidian-icloud-mcp
 }
 ```
 
-Not on npm yet. Formerly named `obsidian-vault-mcp`; renamed because that npm name belongs
-to an unrelated project by another author — don't `npx obsidian-vault-mcp` expecting this
-server. The old GitHub URL redirects here.
+Or from source: `git clone https://github.com/QEbellavita/obsidian-icloud-mcp` and point
+`command: node, args: [/absolute/path/to/obsidian-icloud-mcp/server.js]` at the checkout.
+
+Formerly named `obsidian-vault-mcp`; renamed because that npm name belongs to an unrelated
+project by another author — `npx obsidian-vault-mcp` is not this server. The old GitHub URL
+redirects here.
 
 `OBSIDIAN_VAULTS` is a JSON object of name → absolute path. Multiple vaults are fine:
 
