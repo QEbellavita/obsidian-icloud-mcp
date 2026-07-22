@@ -2,6 +2,8 @@
   <img src="./assets/header.svg" alt="obsidian-icloud-mcp — an Obsidian MCP that survives iCloud eviction" width="100%">
 </p>
 
+<p align="center">[![tests](https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml/badge.svg)](https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml)</p>
+
 An MCP server for Obsidian vaults that doesn't hang on iCloud.
 
 Read, search, create and update notes from your assistant. Five tools, no daemon, no
