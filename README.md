@@ -119,6 +119,12 @@ driven through an injected `fs` so eviction is simulated deterministically rathe
 depending on your actual sync state. Four drive the real server over a real stdio
 transport.
 
+## Citing
+
+If this server is useful in your workflow, cite it via the repo's
+[CITATION.cff](CITATION.cff) (GitHub's "Cite this repository" button), or the
+Zenodo DOI once archived.
+
 ## Licence
 
 MIT — see [LICENSE](LICENSE).

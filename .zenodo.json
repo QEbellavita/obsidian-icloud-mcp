@@ -1,0 +1,17 @@
+{
+  "title": "obsidian-icloud-mcp: an MCP server for Obsidian vaults that survives iCloud eviction",
+  "description": "An MCP (Model Context Protocol) server for Obsidian vaults that doesn't hang on iCloud. Detects dataless placeholders before reading, bounds search, and reports partial results honestly instead of blocking indefinitely on evicted notes.",
+  "creators": [
+    { "name": "Switzer, Belinda" }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "obsidian",
+    "icloud",
+    "notes",
+    "knowledge-management"
+  ]
+}

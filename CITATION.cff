@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "obsidian-icloud-mcp: an MCP server for Obsidian vaults that survives iCloud eviction"
+type: software
+authors:
+  - family-names: Switzer
+    given-names: Belinda
+version: 1.1.0
+date-released: 2026-07-22
+license: MIT
+repository-code: "https://github.com/QEbellavita/obsidian-icloud-mcp"
+keywords:
+  - mcp
+  - model-context-protocol
+  - obsidian
+  - icloud
+  - notes
+  - knowledge-management
+abstract: >-
+  An MCP (Model Context Protocol) server for Obsidian vaults that doesn't hang
+  on iCloud. Detects dataless placeholders before reading, bounds search, and
+  reports partial results honestly instead of blocking indefinitely on
+  evicted notes.
