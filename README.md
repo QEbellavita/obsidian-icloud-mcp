@@ -2,7 +2,7 @@
   <img src="./assets/header.svg" alt="obsidian-icloud-mcp — an Obsidian MCP that survives iCloud eviction" width="100%">
 </p>
 
-<p align="center">[![tests](https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml/badge.svg)](https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml)</p>
+<p align="center"><a href="https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml"><img src="https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml/badge.svg" alt="tests"></a></p>
 
 An MCP server for Obsidian vaults that doesn't hang on iCloud.
 
