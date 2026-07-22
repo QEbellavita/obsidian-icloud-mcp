@@ -25,7 +25,7 @@ const tools = domain.tools();
 const byName = new Map(tools.map((t) => [t.def.name, t]));
 
 const server = new Server(
-  { name: 'obsidian-vault-mcp', version: '1.0.0' },
+  { name: 'obsidian-icloud-mcp', version: '1.0.0' },
   { capabilities: { tools: {} } },
 );
 
@@ -61,11 +61,11 @@ async function main() {
   await server.connect(new StdioServerTransport());
   if (tools.length === 0) {
     process.stderr.write(
-      'obsidian-vault-mcp: no vaults configured. Set OBSIDIAN_VAULTS, e.g.\n' +
+      'obsidian-icloud-mcp: no vaults configured. Set OBSIDIAN_VAULTS, e.g.\n' +
       '  OBSIDIAN_VAULTS=\'{"Personal":"/absolute/path/to/vault"}\'\n',
     );
   } else {
-    process.stderr.write(`obsidian-vault-mcp ready — ${tools.length} tools\n`);
+    process.stderr.write(`obsidian-icloud-mcp ready — ${tools.length} tools\n`);
   }
 }
 

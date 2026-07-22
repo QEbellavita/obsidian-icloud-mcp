@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/header.svg" alt="obsidian-vault-mcp — an Obsidian MCP that survives iCloud eviction" width="100%">
+  <img src="./assets/header.svg" alt="obsidian-icloud-mcp — an Obsidian MCP that survives iCloud eviction" width="100%">
 </p>
 
 An MCP server for Obsidian vaults that doesn't hang on iCloud.
@@ -48,7 +48,7 @@ instead of blocking.
 Clone it, then point your MCP client at `server.js`:
 
 ```bash
-git clone https://github.com/QEbellavita/obsidian-vault-mcp
+git clone https://github.com/QEbellavita/obsidian-icloud-mcp
 ```
 
 ```json
@@ -56,7 +56,7 @@ git clone https://github.com/QEbellavita/obsidian-vault-mcp
   "mcpServers": {
     "obsidian": {
       "command": "node",
-      "args": ["/absolute/path/to/obsidian-vault-mcp/server.js"],
+      "args": ["/absolute/path/to/obsidian-icloud-mcp/server.js"],
       "env": {
         "OBSIDIAN_VAULTS": "{\"Personal\":\"/Users/you/Documents/Notes\"}"
       }
@@ -65,8 +65,9 @@ git clone https://github.com/QEbellavita/obsidian-vault-mcp
 }
 ```
 
-Not on npm. The name `obsidian-vault-mcp` on the npm registry is an unrelated project by
-another author — don't `npx` it expecting this server.
+Not on npm yet. Formerly named `obsidian-vault-mcp`; renamed because that npm name belongs
+to an unrelated project by another author — don't `npx obsidian-vault-mcp` expecting this
+server. The old GitHub URL redirects here.
 
 `OBSIDIAN_VAULTS` is a JSON object of name → absolute path. Multiple vaults are fine:
 

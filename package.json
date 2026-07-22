@@ -1,11 +1,11 @@
 {
-  "name": "obsidian-vault-mcp",
+  "name": "obsidian-icloud-mcp",
   "version": "1.0.0",
   "description": "MCP server for Obsidian vaults that survives iCloud \u2014 reads, searches and writes notes without hanging on evicted files",
   "license": "MIT",
   "main": "server.js",
   "bin": {
-    "obsidian-vault-mcp": "server.js"
+    "obsidian-icloud-mcp": "server.js"
   },
   "files": [
     "server.js",
@@ -31,5 +31,9 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QEbellavita/obsidian-icloud-mcp.git"
   }
 }

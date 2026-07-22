@@ -26,7 +26,7 @@ async function connect(vaults) {
   return client;
 }
 
-describe('obsidian-vault-mcp server', () => {
+describe('obsidian-icloud-mcp server', () => {
   let root;
 
   beforeEach(() => {
