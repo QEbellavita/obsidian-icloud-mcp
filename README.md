@@ -45,6 +45,8 @@ that weren't materialised (`unavailable`) versus hitting the time budget.
 Reading one specific evicted note fails honestly with *"not downloaded from iCloud"*
 instead of blocking.
 
+<p align="center"><img src="./assets/demo.gif" alt="Animated demo — a search reports 5 of 8 notes scanned with 3 iCloud-evicted notes skipped and flagged, then vault_health shows materialized vs evicted counts and points at obsidian_warm_notes" width="90%"></p>
+
 ## Install
 
 Point your MCP client at it:
