@@ -68,6 +68,31 @@ function createDomain() {
         },
         handler: (args) => service.updateNote(args.vault, args.path, args.content),
       },
+      {
+        def: {
+          name: 'obsidian_vault_health',
+          description:
+            'How much of a vault is actually on disk right now: materialized vs iCloud-evicted note counts, bytes '
+            + 'pending download, and the largest evicted notes. stat-only — never triggers a download, never blocks.',
+          inputSchema: makeInput({ vault }, ['vault']),
+        },
+        handler: (args) => service.vaultHealth(args.vault),
+      },
+      {
+        def: {
+          name: 'obsidian_warm_notes',
+          description:
+            'Request background iCloud downloads for evicted notes — the given `paths`, or (with none) the first '
+            + '`limit` evicted notes found (default 25, max 100). Returns immediately; downloads proceed in the '
+            + 'background. Check obsidian_vault_health for progress.',
+          inputSchema: makeInput({
+            vault,
+            paths: { type: 'array', items: notePath, maxItems: 100 },
+            limit: { type: 'integer', minimum: 1, maximum: 100 },
+          }, ['vault']),
+        },
+        handler: (args) => service.warmNotes(args.vault, { paths: args.paths, limit: args.limit }),
+      },
     ],
     resources: () => [{
       name: 'obsidian-vault-capabilities',
@@ -75,7 +100,7 @@ function createDomain() {
       handler: async () => ({
         domain: 'obsidian-vault',
         vaults: Object.keys(vaults),
-        tools: ['obsidian_list_notes', 'obsidian_search_notes', 'obsidian_read_note', 'obsidian_create_note', 'obsidian_update_note'],
+        tools: ['obsidian_list_notes', 'obsidian_search_notes', 'obsidian_read_note', 'obsidian_create_note', 'obsidian_update_note', 'obsidian_vault_health', 'obsidian_warm_notes'],
       }),
     }],
   };

@@ -201,6 +201,107 @@ function createObsidianVaultService({ vaults, fsImpl = fs, now = Date.now, isDat
       return { vault, path: note.relative, status: 'created' };
     },
 
+    // stat() never blocks on an evicted file, so health is safe to compute over the
+    // whole vault — it is the read() that hangs, and health never reads. Capped so a
+    // pathological vault still answers promptly.
+    vaultHealth(vault, { maxNotes = 5000 } = {}) {
+      const notes = this.listNotes(vault).notes;
+      const toScan = notes.slice(0, maxNotes);
+      let materialized = 0;
+      let unreadable = 0;
+      const evicted = [];
+
+      for (const note of toScan) {
+        const candidate = validateNotePath(vault, note, { mustExist: false }).candidate;
+        let stats;
+        try {
+          stats = fsImpl.statSync(candidate);
+        } catch {
+          unreadable += 1;
+          continue;
+        }
+        if (isMaterialized(candidate)) {
+          materialized += 1;
+        } else {
+          evicted.push({ path: note, sizeBytes: stats.size });
+        }
+      }
+
+      evicted.sort((a, b) => b.sizeBytes - a.sizeBytes);
+      const evictedBytes = evicted.reduce((sum, e) => sum + e.sizeBytes, 0);
+      const capped = notes.length > toScan.length;
+
+      return {
+        vault,
+        totalNotes: notes.length,
+        scanned: toScan.length,
+        materialized,
+        evicted: evicted.length,
+        evictedBytes,
+        unreadable,
+        largestEvicted: evicted.slice(0, 5),
+        ...(capped && {
+          incomplete: true,
+          note: `Scanned ${toScan.length}/${notes.length} notes (cap ${maxNotes}). Counts cover the scanned subset only.`,
+        }),
+        ...(evicted.length > 0 && !capped && {
+          note: `${evicted.length} of ${notes.length} notes are iCloud placeholders with no local content. `
+            + 'Reads and searches will skip them until they download — use obsidian_warm_notes to request them.',
+        }),
+      };
+    },
+
+    // Opt-in materialization. Reading a dataless file is exactly what triggers the
+    // iCloud fetch, so "warming" is just the existing background read, applied
+    // deliberately: never on the hot path, never blocking, bounded per call.
+    warmNotes(vault, { paths, limit = 25 } = {}) {
+      const boundedLimit = Math.max(1, Math.min(Number(limit) || 25, 100));
+      let targets;
+      let discovered = null;
+
+      if (Array.isArray(paths) && paths.length > 0) {
+        targets = paths.slice(0, boundedLimit).map((notePath) => {
+          const note = validateNotePath(vault, notePath, { mustExist: true });
+          return { path: note.relative, candidate: note.candidate };
+        });
+      } else {
+        const notes = this.listNotes(vault).notes;
+        targets = [];
+        discovered = 0;
+        for (const note of notes) {
+          const candidate = validateNotePath(vault, note, { mustExist: false }).candidate;
+          if (!fsImpl.existsSync(candidate) || isMaterialized(candidate)) continue;
+          discovered += 1;
+          if (targets.length < boundedLimit) targets.push({ path: note, candidate });
+        }
+      }
+
+      const requested = [];
+      let alreadyLocal = 0;
+      for (const target of targets) {
+        if (isMaterialized(target.candidate)) {
+          alreadyLocal += 1;
+          continue;
+        }
+        requestDownload(target.candidate);
+        requested.push(target.path);
+      }
+
+      return {
+        vault,
+        requested: requested.length,
+        alreadyLocal,
+        paths: requested,
+        ...(discovered !== null && discovered > requested.length + alreadyLocal && {
+          remaining: discovered - requested.length,
+          note: `${discovered} evicted notes found; requested the first ${requested.length} (limit ${boundedLimit}). Call again for the rest.`,
+        }),
+        status: requested.length > 0
+          ? 'Downloads run in the background — check obsidian_vault_health for progress.'
+          : 'Nothing to warm — the requested notes already have local content.',
+      };
+    },
+
     updateNote(vault, notePath, content) {
       const note = validateNotePath(vault, notePath, { mustExist: true });
       const temporary = `${note.candidate}.${process.pid}.${Date.now()}.tmp`;

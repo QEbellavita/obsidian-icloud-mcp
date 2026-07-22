@@ -25,7 +25,7 @@ const tools = domain.tools();
 const byName = new Map(tools.map((t) => [t.def.name, t]));
 
 const server = new Server(
-  { name: 'obsidian-icloud-mcp', version: '1.0.0' },
+  { name: 'obsidian-icloud-mcp', version: '1.1.0' },
   { capabilities: { tools: {} } },
 );
 

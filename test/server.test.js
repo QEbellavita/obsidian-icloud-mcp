@@ -34,7 +34,7 @@ describe('obsidian-icloud-mcp server', () => {
     fs.writeFileSync(path.join(root, 'note.md'), '# Note\nfindable content\n');
   });
 
-  test('advertises the five vault tools', async () => {
+  test('advertises the seven vault tools', async () => {
     const client = await connect({ Personal: root });
     try {
       const { tools } = await client.listTools();
@@ -44,6 +44,8 @@ describe('obsidian-icloud-mcp server', () => {
         'obsidian_read_note',
         'obsidian_search_notes',
         'obsidian_update_note',
+        'obsidian_vault_health',
+        'obsidian_warm_notes',
       ]);
       for (const t of tools) expect(t.inputSchema).toBeDefined();
     } finally {
@@ -90,7 +92,7 @@ describe('obsidian-icloud-mcp server', () => {
 
       // The server must not have died on the rejected call.
       const { tools } = await client.listTools();
-      expect(tools).toHaveLength(5);
+      expect(tools).toHaveLength(7);
     } finally {
       await client.close();
     }

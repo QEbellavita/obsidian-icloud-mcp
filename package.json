@@ -1,6 +1,6 @@
 {
   "name": "obsidian-icloud-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server for Obsidian vaults that survives iCloud \u2014 reads, searches and writes notes without hanging on evicted files",
   "license": "MIT",
   "main": "server.js",

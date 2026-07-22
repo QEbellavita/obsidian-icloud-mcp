@@ -6,8 +6,8 @@
 
 An MCP server for Obsidian vaults that doesn't hang on iCloud.
 
-Read, search, create and update notes from your assistant. Five tools, no daemon, no
-index to rebuild.
+Read, search, create and update notes from your assistant — and see exactly how much
+of the vault iCloud has actually left on disk. Seven tools, no daemon, no index to rebuild.
 
 ## Why another one
 
@@ -88,6 +88,8 @@ crashing in a way your host reports as a broken server.
 | `obsidian_read_note` | Read one note |
 | `obsidian_create_note` | Create a note; refuses to overwrite |
 | `obsidian_update_note` | Atomic overwrite of an existing note |
+| `obsidian_vault_health` | Materialized vs evicted counts, bytes pending, largest evicted notes — stat-only, never blocks |
+| `obsidian_warm_notes` | Opt-in background downloads for evicted notes, bounded per call |
 
 ## Safety
 
@@ -110,7 +112,7 @@ minutes to list. And it never descends into a stalling bundle directory, where e
 npm test
 ```
 
-15 tests. Eleven cover the service directly — including every iCloud failure mode above,
+23 tests. Nineteen cover the service directly — including every iCloud failure mode above,
 driven through an injected `fs` so eviction is simulated deterministically rather than
 depending on your actual sync state. Four drive the real server over a real stdio
 transport.
