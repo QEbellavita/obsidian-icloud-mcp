@@ -2,7 +2,10 @@
   <img src="./assets/header.svg" alt="obsidian-icloud-mcp — an Obsidian MCP that survives iCloud eviction" width="100%">
 </p>
 
-<p align="center"><a href="https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml"><img src="https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml/badge.svg" alt="tests"></a></p>
+<p align="center">
+  <a href="https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml"><img src="https://github.com/QEbellavita/obsidian-icloud-mcp/actions/workflows/test.yml/badge.svg" alt="tests"></a>
+  <a href="https://doi.org/10.5281/zenodo.21485168"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21485168.svg" alt="DOI"></a>
+</p>
 
 An MCP server for Obsidian vaults that doesn't hang on iCloud.
 
@@ -123,7 +126,8 @@ transport.
 
 If this server is useful in your workflow, cite it via the repo's
 [CITATION.cff](CITATION.cff) (GitHub's "Cite this repository" button), or the
-Zenodo DOI once archived.
+Zenodo DOI, [10.5281/zenodo.21485168](https://doi.org/10.5281/zenodo.21485168) — a
+concept DOI that always resolves to the latest archived version.
 
 ## Licence
 

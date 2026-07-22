@@ -9,6 +9,7 @@ version: 1.1.0
 date-released: 2026-07-22
 license: MIT
 repository-code: "https://github.com/QEbellavita/obsidian-icloud-mcp"
+doi: 10.5281/zenodo.21485168
 keywords:
   - mcp
   - model-context-protocol
