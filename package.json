@@ -13,7 +13,8 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "mcp",
@@ -35,5 +36,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/QEbellavita/obsidian-icloud-mcp.git"
-  }
+  },
+  "homepage": "https://github.com/QEbellavita/obsidian-icloud-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/QEbellavita/obsidian-icloud-mcp/issues"
+  },
+  "author": "Belinda Switzer (https://github.com/QEbellavita)"
 }
